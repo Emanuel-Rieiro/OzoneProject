@@ -1,7 +1,13 @@
+# Archivos de ejemplo
+links.txt
+*.nc
+*.nc4
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+secret.py
 
 # C extensions
 *.so
