@@ -2,6 +2,8 @@
 links.txt
 *.nc
 *.nc4
+*.he5
+*.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

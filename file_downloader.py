@@ -47,8 +47,8 @@ if __name__ == "__main__":
     import argparse
 
     # Parse command-line arguments
-    file_list = './OZONO/MENSUAL/M2TMNXSLV/links.txt'
-    output_dir = './OZONO/MENSUAL/M2TMNXSLV'
+    file_list = './OZONO/DIARIO/OMDOAO3e/links.txt'
+    output_dir = './OZONO/DIARIO/OMDOAO3e'
     token = GIOVANNI_TOKEN
 
     # Call the download function
