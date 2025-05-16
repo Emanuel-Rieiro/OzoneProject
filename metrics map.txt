@@ -1,8 +1,0 @@
-UV
-OMUVBd v003
-
-CF
-AIRS3STD v7.0
-
-OMI
-OMTO3d

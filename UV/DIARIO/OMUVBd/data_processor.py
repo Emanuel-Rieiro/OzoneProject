@@ -16,39 +16,43 @@ def main():
         # Filtro para solo procesar los archivos descargados
         if filename.split('-')[0] == 'OMI':
             
+            print(filename)
+            # Cargamos la data y la ponemos en variables
             with h5py.File(filename, "r") as file:
-                ozone = file["HDFEOS/GRIDS/ColumnAmountO3/Data Fields/ColumnAmountO3"][:]
+                uv_data = file["HDFEOS/GRIDS/OMI UVB Product/Data Fields/UVindex"][:]
 
-            lon = np.linspace(-180, 180, ozone.shape[1]).round(3)  # Longitudes
-            lat = np.linspace(-90, 90, ozone.shape[0]).round(3)    # Latitudes
+            # Create latitude and longitude grids
+            lons = np.linspace(-180, 180, uv_data.shape[1]).round(3)  # Longitudes
+            lats = np.linspace(-90, 90, uv_data.shape[0]).round(3)    # Latitudes
 
-            lon_min, lon_max = -58.5, -53.0
+            lon_min, lon_max = -58.7, -53.0
             lat_min, lat_max = -35.1, -30.1
 
-            lon_idx = np.where((lon >= lon_min) & (lon <= lon_max))[0]
-            lat_idx = np.where((lat >= lat_min) & (lat <= lat_max))[0]
-            
+            lon_idx = np.where((lons >= lon_min) & (lons <= lon_max))[0]
+            lat_idx = np.where((lats >= lat_min) & (lats <= lat_max))[0]
+
             # Loop para obtener la data de manera ordenada
             X = []
+            
             for l_lat in lat_idx:
                 for l_lon in lon_idx:
                     x = []
-                    x.append(lat[l_lat])
-                    x.append(lon[l_lon])
-                    x.append(ozone[l_lat,l_lon])
+                    x.append(lats[l_lat])
+                    x.append(lons[l_lon])
+                    x.append(uv_data[l_lat,l_lon])
                     X.append(x)
-
+                    
             X = np.asarray(X)
 
             # Creación del dataframe con la data
-            df = pd.DataFrame(X, columns = ['Latitud', 'Longitud', 'Ozono'])
+            df = pd.DataFrame(X, columns = ['Latitud', 'Longitud', 'UV'])
             fecha = filename.split('_')[2].replace('m','')
             df['Fecha'] = fecha
 
             df_final = pd.concat([df_final, df])
 
     # Guardamos nuestro archivo final
-    df_final.to_csv('OMDOAO3e_O3_URUGUAY.csv', index = False)
+    df_final.to_csv('OMUVBd_UV_URUGUAY.csv', index = False)
 
 
 if __name__ == "__main__":
