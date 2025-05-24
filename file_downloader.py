@@ -47,8 +47,8 @@ if __name__ == "__main__":
     import argparse
 
     # Parse command-line arguments
-    file_list = './UV/DIARIO/OMUVBd/links.txt'
-    output_dir = './UV/DIARIO/OMUVBd'
+    file_list = './CLOUDFRACTION/DIARIO/AIRS3STD/links.txt'
+    output_dir = './CLOUDFRACTION/DIARIO/AIRS3STD'
     token = GIOVANNI_TOKEN
 
     # Call the download function
