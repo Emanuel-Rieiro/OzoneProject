@@ -2,6 +2,8 @@ import os
 import requests
 from secret import GIOVANNI_TOKEN
 
+missing_list = ['20140528']
+
 def download_files_with_token(file_list_path, output_directory, token):
     """Download files from NASA Earthdata using a token for authentication.
 
@@ -24,24 +26,25 @@ def download_files_with_token(file_list_path, output_directory, token):
         url = url.strip()
         if not url:
             continue
+        
+        if url.split('_')[4].replace('m','') in missing_list:
+            try:
+                print(f"Downloading file {idx + 1}/{len(urls)}: {url}")
+                response = requests.get(url, headers=headers, stream=True)
+                response.raise_for_status()
 
-        try:
-            print(f"Downloading file {idx + 1}/{len(urls)}: {url}")
-            response = requests.get(url, headers=headers, stream=True)
-            response.raise_for_status()
+                # Extract file name from the URL
+                file_name = url.split("/")[-1]
+                file_path = os.path.join(output_directory, file_name)
 
-            # Extract file name from the URL
-            file_name = url.split("/")[-1]
-            file_path = os.path.join(output_directory, file_name)
+                # Save the file
+                with open(file_path, 'wb') as output_file:
+                    for chunk in response.iter_content(chunk_size=8192):
+                        output_file.write(chunk)
 
-            # Save the file
-            with open(file_path, 'wb') as output_file:
-                for chunk in response.iter_content(chunk_size=8192):
-                    output_file.write(chunk)
-
-            print(f"Downloaded and saved as {file_path}")
-        except requests.RequestException as e:
-            print(f"Failed to download {url}: {e}")
+                print(f"Downloaded and saved as {file_path}")
+            except requests.RequestException as e:
+                print(f"Failed to download {url}: {e}")
 
 if __name__ == "__main__":
     import argparse

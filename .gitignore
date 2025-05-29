@@ -5,6 +5,7 @@ links.txt
 *.he5
 *.csv
 *.hdf
+naturalearth/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
