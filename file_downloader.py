@@ -2,7 +2,7 @@ import os
 import requests
 from secret import GIOVANNI_TOKEN
 
-def download_files_with_token(file_list_path, output_directory, token):
+def download_files_with_token(file_list_path, output_directory, token, vars=False):
     """Download files from NASA Earthdata using a token for authentication.
 
     Args:
@@ -32,6 +32,8 @@ def download_files_with_token(file_list_path, output_directory, token):
 
             # Extract file name from the URL
             file_name = url.split("/")[-1]
+            if vars:
+                file_name = file_name.split("?")[0]
             file_path = os.path.join(output_directory, file_name)
 
             # Save the file

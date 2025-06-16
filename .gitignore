@@ -5,6 +5,9 @@ links.txt
 *.he5
 *.csv
 *.hdf
+OMUV*.pdf
+README.OMI*.pdf
+subset_OMU*.txt
 naturalearth/
 
 # Byte-compiled / optimized / DLL files
@@ -12,6 +15,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 secret.py
+.DS_Store
 
 # C extensions
 *.so
