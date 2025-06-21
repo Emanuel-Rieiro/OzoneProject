@@ -9,6 +9,7 @@ OMUV*.pdf
 README.OMI*.pdf
 subset_OMU*.txt
 naturalearth/
+UV*.xlsx
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
