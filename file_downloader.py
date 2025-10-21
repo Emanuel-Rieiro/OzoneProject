@@ -3,12 +3,12 @@ import requests
 from secret import GIOVANNI_TOKEN
 
 def download_files_with_token(file_list_path, output_directory, token):
-    """Download files from NASA Earthdata using a token for authentication.
+    """Descargar archivos de NASA Earthdata usando token como autentificador.
 
-    Args:
-        file_list_path (str): Path to the text file containing URLs (one URL per line).
-        output_directory (str): Directory where the files will be saved.
-        token (str): NASA Earthdata token for authentication.
+    Argumentos:
+        file_list_path (str): Archivo de texto con los links (un link por línea).
+        output_directory (str): Carpeta donde se van a guardar los archivos.
+        token (str): NASA Earthdata token para habilitar la comunicación.
     """
     # Headers for token-based authentication
     headers = {"Authorization": f"Bearer {token}"}
@@ -47,8 +47,8 @@ if __name__ == "__main__":
     import argparse
 
     # Parse command-line arguments
-    file_list = './OZONO/DIARIO/OMTO3e/subset_OMTO3e_003_20250528_021132_.txt'
-    output_dir = './OZONO/DIARIO/OMTO3e'
+    file_list = './OZONO/DIARIO/OMDOAO3e/links.txt'
+    output_dir = './OZONO/DIARIO/OMDOAO3e'
     token = GIOVANNI_TOKEN
 
     # Call the download function
