@@ -52,7 +52,7 @@ def main():
             df_final = pd.concat([df_final, df])
 
     # Guardamos nuestro archivo final
-    df_final.to_csv('OMUVBd_UV_URUGUAY.csv', index = False)
+    df_final.to_csv('OMUVBd_UV_URUGUAY_2.csv', index = False)
 
 
 if __name__ == "__main__":
